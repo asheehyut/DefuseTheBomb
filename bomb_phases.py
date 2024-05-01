@@ -1,7 +1,7 @@
 #################################
 # CSC 102 Defuse the Bomb Project
 # GUI and Phase class definitions
-# Team: 
+# Team: Aidan, Dom and Adam
 #################################
 
 # import the configs
@@ -10,6 +10,7 @@ from bomb_configs import *
 from tkinter import *
 import tkinter
 from threading import Thread
+import pygame 
 from time import sleep
 import os
 import sys
@@ -232,7 +233,6 @@ class Wires(PhaseThread):
 
     # runs the thread
     def run(self):
-        # TODO
         pass
 
     # returns the jumper wires state as a string
@@ -240,7 +240,6 @@ class Wires(PhaseThread):
         if (self._defused):
             return "DEFUSED"
         else:
-            # TODO
             pass
 
 # the pushbutton phase
@@ -275,6 +274,11 @@ class Button(PhaseThread):
             # it is released
             else:
                 # was it previously pressed?
+                if self._color == "R":
+                    self._target = "5"
+                if self._color == "G":
+                    self._target = "0"
+                # was it previously pressed?
                 if (self._pressed):
                     # check the release parameters
                     # for R, nothing else is needed
@@ -302,7 +306,7 @@ class Toggles(PhaseThread):
     # runs the thread
     def run(self):
         # TODO
-        pass
+        
 
     # returns the toggle switches state as a string
     def __str__(self):
@@ -310,4 +314,4 @@ class Toggles(PhaseThread):
             return "DEFUSED"
         else:
             # TODO
-            pass
+            return "UNTOGGLE"

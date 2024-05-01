@@ -1,7 +1,7 @@
 #################################
 # CSC 102 Defuse the Bomb Project
 # Configuration file
-# Team: 
+# Team: Aidan, Dom and Adam
 #################################
 
 # constants
@@ -12,6 +12,9 @@ SHOW_BUTTONS = False # show the Pause and Quit buttons on the main LCD GUI?
 COUNTDOWN = 300      # the initial bomb countdown value (seconds)
 NUM_STRIKES = 5      # the total strikes allowed before the bomb "explodes"
 NUM_PHASES = 4       # the total number of initial active bomb phases
+
+EXPLODE = ["explode.mp3"]
+TICKING = ["tick.mp3"]
 
 # imports
 from random import randint, shuffle, choice
@@ -177,12 +180,14 @@ keyword, cipher_keyword, rot, keypad_target, passphrase = genKeypadCombination()
 button_color = choice(["R", "G", "B"])
 # appropriately set the target (R is None)
 button_target = None
+
+if (button_color == "R"):
+    button_target = [ n for n in serial if n.isdigit() ][-1]
 # G is the first numeric digit in the serial number
-if (button_color == "G"):
+elif (button_color == "G"):
     button_target = [ n for n in serial if n.isdigit() ][0]
 # B is the last numeric digit in the serial number
-elif (button_color == "B"):
-    button_target = [ n for n in serial if n.isdigit() ][-1]
+
 
 if (DEBUG):
     print(f"Serial number: {serial}")
